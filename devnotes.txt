@@ -1,0 +1,14 @@
+devnotes.txt
+
+
+9/3/17  HH
+sessionStorage vars
+
+a list of sessionStorage vars
+created by home.html upon reg submission:
+
+userID:         sessionStorage.v7userID;
+userName:       sessionStorage.v7userName;
+userEmail:      sessionStorage.v7userEmail;
+userStatus:     sessionStorage.v7userStatus;
+userCreated:    sessionStorage.v7userCreated;

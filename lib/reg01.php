@@ -1,7 +1,7 @@
 <?php
 
 /*
- * reg01.php v0.0.1
+ * reg01.php v0.2.3
  *
  *
  * TEAM VOLUME 7 - VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -68,11 +68,11 @@ require_once '../../../../config.php';
 $userHash = md5(rand(0,1000));
 
 // CREATE CONNECTION
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 // CHECK CONNECTION
 if (mysqli_connect_errno()) {
-    $queryresult = array("result" => "ERROR CONNECTION");
+	$queryresult = "ERROR CONN FAIL";
 }
 
 // SQL Query ADD USER
@@ -80,14 +80,17 @@ $addUser = "INSERT INTO volunteers (userName, userEmail, userPW, userStatus, use
 VALUES ('$userName', '$userEmail', '$userPW', '0', '$userHash')";
 
 // SEND QUERY AND EVALUATE RESULT
-if ($conn->query($addUser) === TRUE) {
-    $queryresult = array("result" => "OK");
-    } else {
-		$query_error = mysqli_error($conn);
-		$queryresult = array("result" => $query_error);
+if ($con->query($addUser) === TRUE) {
+	$queryresult = "OK";
+  $getUserData = "SELECT * FROM volunteers WHERE userEmail = '$userEmail' ";
+  $results = $con->query($getUserData);
+  $userData = $results->fetch_assoc();
+  } else {
+	$queryresult = mysqli_error($con);
 }
 
-mysqli_close($conn);
+// CLOSE CONNECTION
+mysqli_close($con);
 
 
 
@@ -140,8 +143,11 @@ This is an automated VOLUME 7 notice.
 $headers = 'From:noreply@toposmedia.com' . "\r\n";
 mail($toAdmin, $subjectAdmin, $messageAdmin, $headers);
 
-// RETURN JSON RESULTS
-$jsonResult = json_encode($queryresult);
-echo $jsonResult;
+// ADD QUERY RESULT TO ARRAY
+$userData["result"] = $queryresult;
+
+// RETURN ARRAY AS JSON
+header('Content-type: application/json');
+echo json_encode( $userData );
 
 ?>

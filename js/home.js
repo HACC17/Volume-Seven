@@ -1,5 +1,5 @@
 /*!
- * main.js JavaSctipt v0.0.1
+ * home.js JavaSctipt v0.1.3
  *
  *
  * TEAM VOLUME 7 - VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -38,10 +38,9 @@ sessionStorage.clear();
 
 function register01() {
     "use strict";
-    console.log("function register01 called")
 
     var hr = new XMLHttpRequest(),
-        url = "lib/reg022.php",
+        url = "lib/reg01.php",
         userName = document.getElementById("userName").value,
         userEmail = document.getElementById("userEmail").value,
         userEmailConf = document.getElementById("userEmailConf").value,
@@ -75,13 +74,8 @@ function register01() {
     hr.onreadystatechange = function (){
         if (hr.readyState === 4 && hr.status === 200){
             //$.mobile.loading( "hide" );
-            //var data = hr.responseText;
-            //console.log("responseText: " + data);
 
             var data = JSON.parse(hr.responseText);
-
-            //console.log("userEmail: " + data.userEmail);
-            //console.log("result: " + data.result);
 
             if(data.result == "OK") {
 
@@ -91,8 +85,6 @@ function register01() {
               sessionStorage.v7userEmail = data.userEmail;
               sessionStorage.v7userStatus = data.userStatus;
               sessionStorage.v7userCreated = data.userCreated;
-
-              //console.log("sessionStorage userName: " + sessionStorage.v7userName);
 
               // REDIRECT TO REG PAGE 2
               window.location.assign("reg02.html");
@@ -105,5 +97,5 @@ function register01() {
     };
 
     hr.send(vars);
-    //console.log("vars sent: " + vars);
+
 }
