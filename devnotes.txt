@@ -12,3 +12,16 @@ userName:       sessionStorage.v7userName;
 userEmail:      sessionStorage.v7userEmail;
 userStatus:     sessionStorage.v7userStatus;
 userCreated:    sessionStorage.v7userCreated;
+
+
+9/4 HH
+dbase table: volunteers
+core account registration
+
+* userID	int(7)		UNSIGNED	No	None	AUTOINCREASE
+* userName	varchar(32)	utf8_general_ci		No	None		
+* userEmail	varchar(48)	utf8_general_ci		No	None		
+* userPW	varchar(32)	utf8_general_ci		No	None		
+* userStatus	int(1)			Yes	NULL		
+* userHash	varchar(32)	utf8_general_ci		No	None		
+* userCreated	timestamp			No	CURRENT_TIMESTAMP	
