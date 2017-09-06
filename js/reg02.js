@@ -1,5 +1,5 @@
 /*!
- * reg02.js JavaSctipt v0.0.1
+ * reg02.js JavaSctipt v0.0.2
  *
  *
  * TEAM VOLUME 7 - VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -28,17 +28,10 @@
  * THE SOFTWARE.
  */
 
-//var userName = sessionStorage.v7userName;
-
-//console.log("userName: " + sessionStorage.v7userName);
-
 
  if(sessionStorage.v7userStatus == "0"){
    var emailStatus = "unconfirmed";
  }
-
-
-//var userName = sessionStorage.v7_userName;
 
  // DISPLAY RETRIEVED SQL USER DATA
  document.getElementById("userID").innerHTML = sessionStorage.v7userID;
@@ -47,5 +40,3 @@
  document.getElementById("userEmail").innerHTML = sessionStorage.v7userEmail;
  document.getElementById("userStatus").innerHTML = emailStatus;
  document.getElementById("userCreated").innerHTML = sessionStorage.v7userCreated;
-
- //document.getElementById("userName").innerHTML = sessionStorage.v7userName;

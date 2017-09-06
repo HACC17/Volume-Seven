@@ -30,7 +30,9 @@
  * THE SOFTWARE.
  */
 
-// vars = "userName=" + userName + "&userEmail=" + userEmail + "&userPW=" + userPW;
+// home.js: vars = "userName=" + userName + "&userEmail=" + userEmail + "&userPW=" + userPW;
+
+
 
 // CLEAR VARIABLES
 $userName = $userEmail = $userPW = "";
@@ -131,9 +133,9 @@ A new VOLUME 7 Account has been registered.
 The login information for the account is:
 
 -------------------------------------------
-Admin:    '.$userName.'
-Username: '.$userEmail.'
-Password: '.$userPW.'
+userName:  '.$userName.'
+userEmail: '.$userEmail.'
+userPW:    '.$userPW.'
 -------------------------------------------
 
 This is an automated VOLUME 7 notice.
