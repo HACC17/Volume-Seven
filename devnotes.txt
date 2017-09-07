@@ -18,10 +18,12 @@ userCreated:    sessionStorage.v7userCreated;
 dbase table: volunteers
 core account registration
 
-* userID	int(7)		UNSIGNED	No	None	AUTOINCREASE
-* userName	varchar(32)	utf8_general_ci		No	None		
-* userEmail	varchar(48)	utf8_general_ci		No	None		
-* userPW	varchar(32)	utf8_general_ci		No	None		
-* userStatus	int(1)			Yes	NULL		
-* userHash	varchar(32)	utf8_general_ci		No	None		
-* userCreated	timestamp			No	CURRENT_TIMESTAMP	
+* userID	    int(7)		          UNSIGNED	No	None	AUTOINCREASE
+* userName	  varchar(32)	utf8_general_ci		No	None		
+* userEmail	  varchar(48)	utf8_general_ci		No	None		
+* userPW	    varchar(32)	utf8_general_ci		No	None		
+* userStatus	int(1)			                  Yes	NULL		
+* userHash	  varchar(32)	utf8_general_ci		No	None		
+* userCreated	timestamp			                No	CURRENT_TIMESTAMP	
+
+
