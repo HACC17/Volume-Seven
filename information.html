@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animate.css">
   </head>
   <body>
     <br>
@@ -26,25 +27,6 @@
          </div>
       </div>
       <br>
-      <div class="row">
-         <div class="col text-center">
-            <div class="card">
-               <div class="card-body">
-                  <div>Upcoming election is on</div>
-                  <div><h5>August 11, 2018</h5></div>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card text-center">
-               <div class="card-body">
-                  <div>Volunteers needed:</div>
-                  <div><h5>2738 people</h5></div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <br>
       <div class="card">
          <div class="card-body">
             <ul class="nav nav-pills nav-fill">
@@ -59,7 +41,7 @@
       </div>
       <br>
       <form>
-      <div class="card">
+      <div id="personal-info" class="card">
         <div class="card-header">Personal Information</div>
         <div class="card-body">
             <div class="row">
@@ -97,7 +79,7 @@
              </div>
              <div class="col-sm-12 col-md-4">
                <div class="form-group">
-                  <label for="Social Security Number">Social Security Number</label>
+                  <label for="socialSecurityNumber">Social Security Number</label>
                   <input id="socialSecurityNumber" type="text" class="form-control" placeholder="Social Security Number">
                </div>
              </div>
@@ -127,11 +109,13 @@
                    <input id="preferredTimeToCall" type="text" class="form-control" placeholder="Preferred Time To Call">
                 </div>
              </div>
-             </div>
+            </div>
+            <div class="text-right">
+               <button id="personal-info-next" class="btn btn-primary">Next</button>
+            </div>
         </div>
       </div>
-      <br>
-      <div class="card">
+      <div id="address-info" class="card hideForm animated fadeIn">
         <div class="card-header">Address Info</div>
         <div class="card-body">
            <h6><strong>Residence Address</strong></h6>
@@ -147,62 +131,117 @@
             <div class="row">
              <div class="col-sm-12 col-md-8">
                <div class="form-group">
-                  <label for="residenceAddress">City</label>
-                  <input id="residenceAddress" type="text" class="form-control" placeholder="City">
+                  <label for="residenceCity">City</label>
+                  <input id="residenceCity" type="text" class="form-control" placeholder="City">
                </div>
              </div>
              <div class="col-sm-12 col-md-2">
                <div class="form-group">
-                  <label for="middleInitial">State</label>
-                  <input id="middleInitial" type="text" class="form-control" placeholder="State">
+                  <label for="residenceState">State</label>
+                  <input id="residenceState" type="text" class="form-control" placeholder="State">
                </div>
              </div>
              <div class="col-sm-12 col-md-2">
                <div class="form-group">
-                  <label for="lastName">ZIP Code</label>
-                  <input id="lastName" type="text" class="form-control" placeholder="ZIP Code">
+                  <label for="residenceZipCode">ZIP Code</label>
+                  <input id="residenceZipCode" type="text" class="form-control" placeholder="ZIP Code">
                </div>
              </div>
             </div>
-            <br>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"> Is your residence address the same as your mailing address?
+                </label>
+              </div>
+            </div>
             <h6><strong>Mailing Address</strong></h6>
             <hr>
             <div class="form-group">
-              <label for="residenceAddress1">Address 1</label>
-              <input id="residenceAddress1" type="text" class="form-control" placeholder="Address 1">
+              <label for="mailingAddress1">Address 1</label>
+              <input id="mailingAddress1" type="text" class="form-control" placeholder="Address 1">
             </div>
             <div class="form-group">
-              <label for="residenceAddress2">Address 2</label>
-              <input id="residenceAddress2" type="text" class="form-control" placeholder="Address 2">
+              <label for="mailingAddress2">Address 2</label>
+              <input id="mailingAddress2" type="text" class="form-control" placeholder="Address 2">
             </div>
              <div class="row">
               <div class="col-sm-12 col-md-8">
                 <div class="form-group">
-                   <label for="residenceAddress">City</label>
-                   <input id="residenceAddress" type="text" class="form-control" placeholder="City">
+                   <label for="mailingCity">City</label>
+                   <input id="mailingCity" type="text" class="form-control" placeholder="City">
                 </div>
               </div>
               <div class="col-sm-12 col-md-2">
                 <div class="form-group">
-                   <label for="middleInitial">State</label>
-                   <input id="middleInitial" type="text" class="form-control" placeholder="State">
+                   <label for="mailingState">State</label>
+                   <input id="mailingState" type="text" class="form-control" placeholder="State">
                 </div>
               </div>
               <div class="col-sm-12 col-md-2">
                 <div class="form-group">
-                   <label for="lastName">ZIP Code</label>
-                   <input id="lastName" type="text" class="form-control" placeholder="ZIP Code">
+                   <label for="mailingZipCode">ZIP Code</label>
+                   <input id="mailingZipCode" type="text" class="form-control" placeholder="ZIP Code">
                 </div>
               </div>
              </div>
+             <div class="text-right">
+                <button id="address-info-next" class="btn btn-primary">Next</button>
+             </div>
         </div>
       </div>
-      <br>
-      <div class="text-center">
-         <button type="submit" class="btn btn-primary">Update Information</button>
+      <div id="other-info" class="card hideForm animated fadeIn">
+        <div class="card-header">Other Info</div>
+        <div class="card-body">
+           <div class="form-group">
+             <label for="secondLanguage">Second language</label>
+             <input id="secondLanguage" type="text" class="form-control" placeholder="Second language">
+           </div>
+           <div class="form-group">
+             <label for="politicalPartyAffiliation">Political Party Affiliation</label>
+             <input id="politicalPartyAffiliation" type="text" class="form-control" placeholder="Political Party Affiliation">
+           </div>
+           <div class="form-group">
+             <div class="form-check">
+               <label class="form-check-label">
+                 <input id="isStateEmployee" class="form-check-input" type="checkbox"> Are you a state employee?
+               </label>
+             </div>
+           </div>
+           <div class="form-group">
+             <div class="form-check">
+               <label class="form-check-label">
+                 <input id="workedInElection" class="form-check-input" type="checkbox"> Have you worked in the election before?
+               </label>
+             </div>
+           </div>
+            <div class="form-group">
+              <label for="lastElectionWorked">Last election worked?</label>
+              <input id="lastElectionWorked" type="text" class="form-control" placeholder="Last election worked?">
+            </div>
+            <div class="form-group">
+              <label for="lastElectionPosition">What position were you?</label>
+              <input id="lastElectionPosition" type="text" class="form-control" placeholder="What position were you?">
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input id="workedInElection" class="form-check-input" type="checkbox"> Do you want to donate your stipend?
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+               <label for="NPO">NPO</label>
+               <input id="NPO" type="text" class="form-control" placeholder="NPO">
+            </div>
+            <div class="text-right">
+               <button id="submitForm" type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
       </div>
       </form>
       <br><br>
+
     </div>
 
     <!-- Optional JavaScript -->
@@ -210,5 +249,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src=./information.js></script>
   </body>
 </html>
