@@ -1,12 +1,12 @@
 /*!
- * home.js JavaSctipt v0.1.4
+ * index.js JavaSctipt v0.1.0
  *
  *
- * TEAM VOLUME 7 - VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
- * Developed as a demo for HACC17
+ * VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
+ * Developed by team VOLUME 7 as a demo for HACC17
  *
- * Copyright 2017 Holger H-Ray Heine
- * contact: hh57@toposmedia.com
+ * Copyright 2017 Spencer Young, Holger H-Ray Heine
+ * contact: spencerpjy@gmail.com, hh57@toposmedia.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,29 +29,56 @@
  */
 
 
-
 // CLEAR SESSION STORAGE VARS
 sessionStorage.clear();
 
 
+// DECLARE VARS
+var currentForm;
+
+
+// REGISTRATION FORM INDEX.HTML TRANSITIONS
+
+$( document ).ready(function() {
+  currentForm = 'account_setup';
+
+  $('#personal-info1').click((e) => {
+    e.preventDefault();
+
+  });
+
+  $('#personal-info-next').click((e) => {
+    e.preventDefault();
+    $('#personal-info').addClass('hideForm');
+    $('#address-info').removeClass('hideForm');
+    currentForm = 'address-info';
+  });
+
+  $('#address-info-next').click((e) => {
+    e.preventDefault();
+    $('#address-info').addClass('hideForm');
+    $('#other-info').removeClass('hideForm');
+    currentForm = 'other-info';
+  });
+
+});
+
+
+
+
+
+
 // FUNCTIONS
 
-function register01() {
+function create_account() {
     "use strict";
 
     var hr = new XMLHttpRequest(),
-        url = "lib/reg01.php",
-        userName = document.getElementById("userName").value,
+        url = "lib/create_account.php",
         userEmail = document.getElementById("userEmail").value,
         userEmailConf = document.getElementById("userEmailConf").value,
         userPW = document.getElementById("userPW").value,
-        vars = "userName=" + userName + "&userEmail=" + userEmail + "&userPW=" + userPW;
-
-    //TEST USERNAME IS NOT EMPTY
-    if (userName == "") {
-        alert ("Please enter a User Name (your first name or nickname)!");
-        return false;
-        }
+        vars = "userEmail=" + userEmail + "&userPW=" + userPW;
 
     //TEST EMAIL ADDRESS IS VALID
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/.test(userEmail)) {
@@ -66,8 +93,14 @@ function register01() {
         return false;
     }
 
+    //TEST PW HAS BEEN ENTERED
+    if(userPW == "") {
+        alert("Please enter a password for your account.");
+        return false;
+    }
 
-    //PROCESS REGISTRATION PART 1
+
+    //PROCESS ACCOUNT CREATION
     //$.mobile.loading( "show" );
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -81,16 +114,23 @@ function register01() {
 
               // WRITE USER DATA TO sessionStorage
               sessionStorage.v7userID = data.userID;
-              sessionStorage.v7userName = data.userName;
               sessionStorage.v7userEmail = data.userEmail;
               sessionStorage.v7userStatus = data.userStatus;
               sessionStorage.v7userCreated = data.userCreated;
+              sessionStorage.v7userCC = data.userCC;
 
-              // REDIRECT TO REG PAGE 2
-              window.location.assign("information.html");
+              console.log('userCC = ' + sessionStorage.v7userCC);
+
+              document.getElementById("emailSub").innerHTML = sessionStorage.v7userEmail;
+
+              $('#account_setup').addClass('hideForm');
+              $('#confirm-email').removeClass('hideForm');
+              currentForm = 'confirm-email';
 
               } else {
               console.log("query error: " + data.result);
+              //if data.result begins with: "query error: Duplicate entry"
+              //alert ("The email address " + userEmail + "belongs to an existing account. Please login with your password.");
               alert("Oops, something went wrong!");
 		        }
          }
@@ -98,4 +138,18 @@ function register01() {
 
     hr.send(vars);
 
+}
+
+
+
+function confirm_account(){
+  "use strict";
+  var userCCinput = document.getElementById("userCC").value;
+  if(userCCinput == sessionStorage.v7userCC){
+    $('#confirm-email').addClass('hideForm');
+    $('#personal-info').removeClass('hideForm');
+    currentForm = 'personal-info';
+  } else {
+    alert("Oops! The code you entered is incorrect. Please check carefully and try again.")
+  }
 }

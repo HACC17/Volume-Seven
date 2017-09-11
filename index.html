@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="authors" content="Spencer Young, Holger H-Ray Heine">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+  </head>
+  <body>
+     <br />
+    <div class="container">
+      <div class="card">
+         <div class="card-body">
+            <div class="row">
+              <div class="col-md-1">
+                 <img src="images/logo.png" alt="">
+              </div>
+              <div class="col-md-11">
+                 <h4>State of Hawaii</h4>
+                 <h2 class="blue"><strong>Office of Elections</strong></h2>
+              </div>
+            </div>
+         </div>
+      </div><!-- END OF CARD -->
+
+      <br>
+
+      <form name="account_setup" onSubmit="return false;">
+      <div id="account_setup" class="card">
+        <h4 class="card-header">Sign up to become an election volunteer!
+          Enter your email address and password below to get started.</h4>
+        <div class="card-body">
+             <div class="form-group">
+               <label for="userEmail">Email Address</label>
+               <input id="userEmail" type="email" class="form-control" placeholder="Your email address">
+             </div>
+             <div class="form-group">
+               <label for="userEmailConf">Email Address Confirmation</label>
+               <input id="userEmailConf" type="email" class="form-control" placeholder="Confirm your email address">
+             </div>
+             <div class="form-group">
+               <label for="userPW">Password</label>
+               <input id="userPW" type="password" class="form-control" placeholder="Your password">
+             </div>
+             <button id="account_create" class="btn btn-primary" onclick="create_account()">Register</button>
+           </form>
+        </div>
+      </div><!-- END OF CARD -->
+
+      <br />
+
+      <form name="confirm-email" onSubmit="return false;">
+      <div id="confirm-email" class="card hideForm animated fadeIn">
+        <div class="card-header"><h4>Thank you!</h4></div>
+        <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+
+              <p>Your Hawaii Election Volunteer account has been created.
+              An automatic email with a confirmation code has been sent
+              to your email address (<span id="emailSub"></span>)</p>
+
+              <p>Please check your inbox and enter your confirmation code in
+              the field below:</p>
+
+              <div class="form-group">
+                <label for="userCC">Confirmation Code</label>
+                <input id="userCC" type="text" class="form-control"
+                placeholder="Enter your confirmation code">
+              </div>
+
+            </div>
+
+            <div class="text-right">
+              <button id="account-confirm" class="btn btn-primary" onclick="confirm_account()">Confirm</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div><!-- END OF CARD -->
+
+      <br />
+
+      <form name="volunteer-info" onSubmit="return false;">
+      <div id="personal-info" class="card hideForm animated fadeIn">
+        <div class="card-header">Personal Information</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input id="firstName" type="text" class="form-control" placeholder="First name">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <div class="form-group">
+                <label for="middleInitial">Middle Initial</label>
+                <input id="middleInitial" type="text" class="form-control" placeholder="Middle initial">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-5">
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="aka">AKA</label>
+                <input id="AKA" type="text" class="form-control" placeholder="AKA">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input id="dateOfBirth" type="text" class="form-control" placeholder="Date of Birth">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="lastFourDigitsOfSocialSecurityNumber">Last Four Digits of Social Security Number</label>
+                <input id="lastFourDigitsOfSocialSecurityNumber" type="text" class="form-control" placeholder="Last Four Digits of Social Security Number">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label for="primaryPhone">Primary Phone</label>
+                    <input id="primaryPhone" type="text" class="form-control" placeholder="Home Phone">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label for="primaryTypeOfPhone">Phone Type</label>
+                    <div class="dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="primaryTypeOfPhone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Phone Type
+                      </a>
+
+                      <div class="dropdown-menu" aria-labelledby="primaryTypeOfPhone">
+                        <a class="dropdown-item" href="#">Cell</a>
+                        <a class="dropdown-item" href="#">Home</a>
+                        <a class="dropdown-item" href="#">Work</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label for="seconaryPhone">Secondary Phone</label>
+                    <input id="seconaryPhone" type="text" class="form-control" placeholder="Home Phone">
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label for="seconaryTypeOfPhone">Phone Type</label>
+                    <div class="dropdown show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="seconaryTypeOfPhone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Phone Type
+                           </a>
+
+                      <div class="dropdown-menu" aria-labelledby="seconaryTypeOfPhone">
+                        <a class="dropdown-item" href="#">Cell</a>
+                        <a class="dropdown-item" href="#">Home</a>
+                        <a class="dropdown-item" href="#">Work</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <div class="form-group">
+                <label for="preferredTimeToCall">Preferred Time To Call</label>
+                <input id="preferredTimeToCall" type="text" class="form-control" placeholder="Preferred Time To Call">
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <button id="personal-info-next" class="btn btn-primary">Next</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+  </div><!-- END OF CONTAINER -->
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+  <!-- Optional JavaScript -->
+  <script src=js/index.js></script>
+
+  </body>
+</html>
