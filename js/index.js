@@ -42,11 +42,6 @@ var currentForm;
 $( document ).ready(function() {
   currentForm = 'account_setup';
 
-  $('#personal-info1').click((e) => {
-    e.preventDefault();
-
-  });
-
   $('#personal-info-next').click((e) => {
     e.preventDefault();
     $('#personal-info').addClass('hideForm');
@@ -123,9 +118,11 @@ function create_account() {
 
               document.getElementById("emailSub").innerHTML = sessionStorage.v7userEmail;
 
+              $('#account-login').hide();
               $('#account_setup').addClass('hideForm');
               $('#confirm-email').removeClass('hideForm');
               currentForm = 'confirm-email';
+              console.log('completed shows and hides');
 
               } else {
               console.log("query error: " + data.result);

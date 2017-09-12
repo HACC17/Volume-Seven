@@ -16,29 +16,39 @@
   <body>
      <br />
     <div class="container">
+
       <div class="card">
          <div class="card-body">
+           <div id="account-login" class="row">
+              <div class="col-sm-12">
+                <div class="text-right">
+                  <button id="login" class="btn btn-primary" onclick="">Login</button>
+                </div>
+              </div>
+            </div><!-- END ROW -->
+
             <div class="row">
-              <div class="col-md-1">
-                 <img src="images/logo.png" alt="">
-              </div>
-              <div class="col-md-11">
-                 <h4>State of Hawaii</h4>
-                 <h2 class="blue"><strong>Office of Elections</strong></h2>
-              </div>
-            </div>
-         </div>
+              <div class="col-sm-12">
+                <center>
+                 <img src="images/hawaii-state-seal.png" style="margin:20px" alt="Seal of the State of Hawaii">
+                 <br />
+                 <h4><a href="http://elections.hawaii.gov" class="external">Office of Elections</a></h4>
+                 <h2>Volunteer Scheduler</h2>
+               </center>
+               </div>
+              </div><!-- END ROW -->
+          </div>
       </div><!-- END OF CARD -->
 
-      <br>
+      <br />
 
       <form name="account_setup" onSubmit="return false;">
       <div id="account_setup" class="card">
-        <h4 class="card-header">Sign up to become an election volunteer!
-          Enter your email address and password below to get started.</h4>
+        <h5 class="card-header">Register now to volunteer in the upcoming elections!</h5>
+
         <div class="card-body">
              <div class="form-group">
-               <label for="userEmail">Email Address</label>
+               <label for="userEmail">Your Email Address</label>
                <input id="userEmail" type="email" class="form-control" placeholder="Your email address">
              </div>
              <div class="form-group">
@@ -46,41 +56,42 @@
                <input id="userEmailConf" type="email" class="form-control" placeholder="Confirm your email address">
              </div>
              <div class="form-group">
-               <label for="userPW">Password</label>
+               <label for="userPW">Your Password</label>
                <input id="userPW" type="password" class="form-control" placeholder="Your password">
              </div>
-             <button id="account_create" class="btn btn-primary" onclick="create_account()">Register</button>
+             <div class="text-right">
+               <button id="account_create" class="btn btn-primary" onclick="create_account()">Register</button>
+             </div>
            </form>
         </div>
       </div><!-- END OF CARD -->
 
-      <br />
 
       <form name="confirm-email" onSubmit="return false;">
       <div id="confirm-email" class="card hideForm animated fadeIn">
-        <div class="card-header"><h4>Thank you!</h4></div>
+        <h5 class="card-header">Thank you!</h5>
         <div class="card-body">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
 
-              <p>Your Hawaii Election Volunteer account has been created.
-              An automatic email with a confirmation code has been sent
-              to your email address (<span id="emailSub"></span>)</p>
+              <p>Your Election Volunteer account has been created
+                and is ready to be activated. An email with an account activation
+                code has been sent to your email address: <span id="emailSub"></span></p>
 
-              <p>Please check your inbox and enter your confirmation code in
+              <p>Please check your inbox and enter your activation code in
               the field below:</p>
 
               <div class="form-group">
-                <label for="userCC">Confirmation Code</label>
+                <label for="userCC">Activation Code</label>
                 <input id="userCC" type="text" class="form-control"
-                placeholder="Enter your confirmation code">
+                placeholder="Enter your account activation code">
               </div>
 
             </div>
 
             <div class="text-right">
-              <button id="account-confirm" class="btn btn-primary" onclick="confirm_account()">Confirm</button>
+              <button id="account-confirm" class="btn btn-primary" onclick="confirm_account()">Activate</button>
               </form>
             </div>
           </div>
@@ -88,7 +99,6 @@
         </div>
       </div><!-- END OF CARD -->
 
-      <br />
 
       <form name="volunteer-info" onSubmit="return false;">
       <div id="personal-info" class="card hideForm animated fadeIn">
