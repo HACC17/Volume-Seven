@@ -1,11 +1,26 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  font-family: Helvetica;
+}
+
+#pollsMap {
+  height: 600px;
+  width: auto
+}
+
+
 .blue {
    color: #007E9F;
 }
 
+/* commented out as html and body were needed for maps
 body {
    font-family: Helvetica;
-   /*background-image: url("http://elections.hawaii.gov/wp-content/uploads/2016/09/DSC_0144-optimized.jpg");*/
+   background-image: url("http://elections.hawaii.gov/wp-content/uploads/2016/09/DSC_0144-optimized.jpg");
 }
+*/
 
 .hideForm {
   display: none;
