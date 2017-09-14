@@ -102,117 +102,109 @@
 
       <form name="volunteer-info" onSubmit="return false;">
       <div id="personal-info" class="card hideForm animated fadeIn">
-        <div class="card-header">Personal Information</div>
+        <h5 class="card-header">Name and Contact Information</h5>
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-12 col-md-5">
-              <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input id="firstName" type="text" class="form-control" placeholder="First name">
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-2">
-              <div class="form-group">
-                <label for="middleInitial">Middle Initial</label>
-                <input id="middleInitial" type="text" class="form-control" placeholder="Middle initial">
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5">
-              <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input id="lastName" type="text" class="form-control" placeholder="Last name">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <div class="form-group">
-                <label for="aka">AKA</label>
-                <input id="AKA" type="text" class="form-control" placeholder="AKA">
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="form-group">
-                <label for="dateOfBirth">Date of Birth</label>
-                <input id="dateOfBirth" type="text" class="form-control" placeholder="Date of Birth">
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="form-group">
-                <label for="lastFourDigitsOfSocialSecurityNumber">Last Four Digits of Social Security Number</label>
-                <input id="lastFourDigitsOfSocialSecurityNumber" type="text" class="form-control" placeholder="Last Four Digits of Social Security Number">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <label for="primaryPhone">Primary Phone</label>
-                    <input id="primaryPhone" type="text" class="form-control" placeholder="Home Phone">
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <label for="primaryTypeOfPhone">Phone Type</label>
-                    <div class="dropdown show">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="primaryTypeOfPhone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Phone Type
-                      </a>
 
-                      <div class="dropdown-menu" aria-labelledby="primaryTypeOfPhone">
-                        <a class="dropdown-item" href="#">Cell</a>
-                        <a class="dropdown-item" href="#">Home</a>
-                        <a class="dropdown-item" href="#">Work</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-3 col-form-label">First Name</label>
+              <div class="col-9">
+                <input class="form-control" type="text" placeholder="First Name" id="firstName">
               </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <label for="seconaryPhone">Secondary Phone</label>
-                    <input id="seconaryPhone" type="text" class="form-control" placeholder="Home Phone">
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <label for="seconaryTypeOfPhone">Phone Type</label>
-                    <div class="dropdown show">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="seconaryTypeOfPhone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Phone Type
-                           </a>
 
-                      <div class="dropdown-menu" aria-labelledby="seconaryTypeOfPhone">
-                        <a class="dropdown-item" href="#">Cell</a>
-                        <a class="dropdown-item" href="#">Home</a>
-                        <a class="dropdown-item" href="#">Work</a>
-                      </div>
-                    </div>
-                  </div>
+            <div class="form-group row">
+              <label for="middleInitial" class="col-3 col-form-label">Middle</label>
+              <div class="col-9">
+                <input class="form-control" type="text" placeholder="Middle Name or Initial" id="middleName">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="lastName" class="col-3 col-form-label">Last Name</label>
+              <div class="col-9">
+                <input class="form-control" type="text" placeholder="Last Name" id="lastName">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="aKA" class="col-3 col-form-label">AKA</label>
+              <div class="col-9">
+                <input class="form-control" type="text" placeholder="AKA" id="aKA">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="dateOfBirth" class="col-3 col-form-label">Date of Birth</label>
+              <div class="col-9">
+                <input class="form-control" type="date" placeholder="yyyy-mm-dd" id="dateOfBirth">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="cellPhone" class="col-3 col-form-label">Cell Phone</label>
+              <div class="col-9">
+                <input class="form-control" type="tel" placeholder="(808) 123-4567" id="cellPhone">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="homePhone" class="col-3 col-form-label">Home Phone</label>
+              <div class="col-9">
+                <input class="form-control" type="tel" placeholder="(808) 123-4567" id="homePhone">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="prefContact" class="col-3 col-form-label">Contact</label>
+              <div class="col-9">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="contactPref" id="contactEmail" value="email" checked>
+                    Email
+                  </label>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 col-md-12">
-              <div class="form-group">
-                <label for="preferredTimeToCall">Preferred Time To Call</label>
-                <input id="preferredTimeToCall" type="text" class="form-control" placeholder="Preferred Time To Call">
+
+            <div class="form-group row">
+              <label for="prefContact" class="col-3 col-form-label">Contact</label>
+              <div class="col-9">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="contactPref" id="contactPhone" value="phone">
+                    Phone
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="text-right">
-            <button id="personal-info-next" class="btn btn-primary">Next</button>
-          </div>
+
+            <div class="form-group row">
+              <label for="bestCallTime" class="col-3 col-form-label">Best Time to Call</label>
+              <div class="col-9">
+                <select class="form-control" id="bestCallTime">
+                  <option><b>AM</b> (Mon-Fri 08:00am - 12:00n )</option>
+                  <option><b>PM</b> (Mon-Fri 01:00pm - 05:00pm)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-3 col-form-label"></label>
+              <div class="col-9">
+                <div class="text-right">
+                  <button id="personal-info-next" class="btn btn-primary">Next</button>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
+    </form>
 
 
+      <footer class="container-fluid text-center">
+        <p> <br /> </p>
+        <p>Footer Text</p>
+      </footer>
 
 
 
