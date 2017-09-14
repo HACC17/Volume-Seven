@@ -19,11 +19,28 @@ dbase table: volunteers
 core account registration
 
 * userID	    int(7)		          UNSIGNED	No	None	AUTOINCREASE
-* userName	  varchar(32)	utf8_general_ci		No	None		
-* userEmail	  varchar(48)	utf8_general_ci		No	None		
-* userPW	    varchar(32)	utf8_general_ci		No	None		
-* userStatus	int(1)			                  Yes	NULL		
-* userHash	  varchar(32)	utf8_general_ci		No	None		
-* userCreated	timestamp			                No	CURRENT_TIMESTAMP	
+* userName	  varchar(32)	utf8_general_ci		No	None
+* userEmail	  varchar(48)	utf8_general_ci		No	None
+* userPW	    varchar(32)	utf8_general_ci		No	None
+* userStatus	int(1)			                  Yes	NULL
+* userHash	  varchar(32)	utf8_general_ci		No	None
+* userCreated	timestamp			                No	CURRENT_TIMESTAMP
 
 
+
+
+9/14 HH
+MISC BITS
+
+<div class="form-group row">
+  <label for="userTitle" class="col-3 col-form-label">Title</label>
+  <div class="col-9">
+    <select class="form-control" id="userTitle">
+      <option></option>
+      <option>Mr.</option>
+      <option>Mrs.</option>
+      <option>Ms.</option>
+      <option>Dr.</option>
+    </select>
+  </div>
+</div>
