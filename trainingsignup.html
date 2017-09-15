@@ -7,8 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/clndr.less">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/bootstrap-year-calendar.min.css">
   </head>
   <body>
     <br>
@@ -61,20 +61,49 @@
       <br>
       <div class="card">
         <div class="card-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Precinct Official</h5>
+                <small class="text-muted">July 21, 2018</small>
+              </div>
+              <p class="mb-1">Kahala Elementary Cafeteria</p>
+              <small>5:30 PM - 7:30 PM</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Precinct Official</h5>
+                <small class="text-muted">June 26, 2018</small>
+              </div>
+              <p class="mb-1">Henry J. Kaiser High School Auditorium</p>
+              <small class="text-muted">12:00 PM - 2:00 PM</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Control Operator</h5>
+                <small class="text-muted">June 30, 2018</small>
+              </div>
+              <p class="mb-1">State Capitol Building</p>
+              <small class="text-muted">3:00 PM - 5:00 PM</small>
+            </a>
+          </div>
         </div>
       </div>
       <br>
-      <div data-provide="calendar"></div>
 
       <br><br>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="./js/bootstrap-year-calendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+    <script src="./js/clndr.min.js"></script>
     <script src="./trainingsignup.js"></script>
+
   </body>
 </html>
