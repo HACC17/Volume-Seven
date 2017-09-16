@@ -6,6 +6,7 @@ $(document).ready(function() {
     // set base map layer to streets
     L.esri.basemapLayer('Streets').addTo(map);
     // get feature layer from honolulu gis map of poll stations
+    // this might need to be changed to https?
     var polls = L.esri.featureLayer({
       url:'http://webserverholis.honolulugis.org/arcgis/rest/services/Public/Administrative_Political/MapServer/8'
     }).addTo(map);
