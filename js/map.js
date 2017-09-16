@@ -48,11 +48,9 @@ $(document).ready(function() {
         // When click poll marker access methods available to popup
         // Not currently needed.
         polls.on('click', onClick);
-
         function onClick(e) {
           var popup = e.target.getPopup();
           var element = popup.getLatLng();
-
           console.log("this is the lat-lng element", element);
         }
         */
