@@ -16,4 +16,12 @@ $( document ).ready(function() {
     currentForm = 'other-info';
   });
 
+  $('#mailingSameAsResidence').click(function(){
+    if (this.checked) {
+      $('#mailingAddressFields').addClass('hideForm');
+    } else if (!this.checked) {
+      $('#mailingAddressFields').removeClass('hideForm');
+    }
+  });
+
 });
