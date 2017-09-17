@@ -1,5 +1,5 @@
 /*!
- * index.js JavaSctipt v0.1.0
+ * index.js JavaSctipt v0.1.3
  *
  *
  * VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -47,6 +47,16 @@ $( document ).ready(function() {
     $('#personal-info').addClass('hideForm');
     $('#address-info').removeClass('hideForm');
     currentForm = 'address-info';
+
+    // WRITE USER INPUT TO SESSION STORAGE
+    sessionStorage.v7firstName = document.getElementById("firstName").value;
+    sessionStorage.v7middleName = document.getElementById("middleName").value;
+    sessionStorage.v7lastName = document.getElementById("lastName").value;
+    sessionStorage.v7aKa = document.getElementById("aKa").value;
+
+    // WRITE USER INPUT TO MYSQL
+    add_info();
+
   });
 
   $('#address-info-next').click((e) => {
@@ -56,9 +66,15 @@ $( document ).ready(function() {
     currentForm = 'other-info';
   });
 
+  $('#mailingSameAsResidence').click(function(){
+    if (this.checked) {
+      $('#mailingAddressFields').addClass('hideForm');
+    } else if (!this.checked) {
+      $('#mailingAddressFields').removeClass('hideForm');
+    }
+  });
+
 });
-
-
 
 
 
@@ -96,15 +112,11 @@ function create_account() {
 
 
     //PROCESS ACCOUNT CREATION
-    //$.mobile.loading( "show" );
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function (){
         if (hr.readyState === 4 && hr.status === 200){
-            //$.mobile.loading( "hide" );
-
             var data = JSON.parse(hr.responseText);
-
             if(data.result == "OK") {
 
               // WRITE USER DATA TO sessionStorage
@@ -122,7 +134,6 @@ function create_account() {
               $('#account_setup').addClass('hideForm');
               $('#confirm-email').removeClass('hideForm');
               currentForm = 'confirm-email';
-              console.log('completed shows and hides');
 
               } else {
               console.log("query error: " + data.result);
@@ -143,10 +154,71 @@ function confirm_account(){
   "use strict";
   var userCCinput = document.getElementById("userCC").value;
   if(userCCinput == sessionStorage.v7userCC){
+
+    // USER EMAIL CONFIRMED
     $('#confirm-email').addClass('hideForm');
     $('#personal-info').removeClass('hideForm');
     currentForm = 'personal-info';
+
+    // UPDATE DBASE RECORD
+    activate_account();
+    
   } else {
     alert("Oops! The code you entered is incorrect. Please check carefully and try again.")
   }
+}
+
+
+
+function activate_account(){
+  // ACTIVATE ACCOUNT
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/activate_acct.php",
+  vars =  "volID=" + sessionStorage.v7userID;
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer account activated.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
+}
+
+
+
+function add_info(){
+  // WRITE NAME DATA TO MYSQL
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/add_info.php",
+  vars =  "volID=" + sessionStorage.v7userID +
+          "&firstName=" + sessionStorage.v7firstName +
+          "&middleName=" + sessionStorage.v7middleName +
+          "&lastName=" + sessionStorage.v7lastName +
+          "&aKa=" + sessionStorage.v7aKa;
+
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer Name Info written to db.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
 }
