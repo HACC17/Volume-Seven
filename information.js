@@ -1,5 +1,6 @@
 
 $( document ).ready(function() {
+  $('#dateOfBirth').datepicker();
   let currentForm = 'personal-info';
 
   $('#personal-info-next').click((e) => {
