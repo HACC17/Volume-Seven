@@ -41,6 +41,22 @@ state VARCHAR(2),
 zipCode VARCHAR(10)
 )
 
+CREATE TABLE otherinfo (
+id INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+volID INT(7) UNSIGNED,
+secondLanguage VARCHAR(36),
+partyAffiliation VARCHAR(3),
+stateEmployee VARCHAR(1),
+workedInElection VARCHAR(1),
+lastElectionWorked VARCHAR(24),
+lastElectionPosition VARCHAR(36),
+donateStipend VARCHAR(1),
+npo VARCHAR(36)
+)
+
+
+
+
 
 
 
