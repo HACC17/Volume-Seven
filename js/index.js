@@ -36,9 +36,7 @@ sessionStorage.clear();
 // DECLARE VARS
 var currentForm;
 
-
-// REGISTRATION FORM INDEX.HTML TRANSITIONS
-
+// DOCUMENT READY FUNCTIONS AND TRANSITIONS
 $( document ).ready(function() {
 
   // INITIALIZE DATEPICKER
@@ -60,6 +58,9 @@ $( document ).ready(function() {
     $('#personal-info').addClass('hideForm');
     $('#address-info').removeClass('hideForm');
     currentForm = 'address-info';
+
+    // SET CHECKBOX MAILING = RESIDENCE ADDRESS TO CHECKED
+    $('#mailingSameAsResidence').prop('checked', true);
 
     // WRITE USER INPUT TO SESSION STORAGE
     sessionStorage.v7firstName = document.getElementById("firstName").value;
@@ -85,7 +86,46 @@ $( document ).ready(function() {
     $('#address-info').addClass('hideForm');
     $('#other-info').removeClass('hideForm');
     currentForm = 'other-info';
-  });
+
+    // WRITE RESIDENCE ADDRESS INPUT TO SESSION STORAGE
+    sessionStorage.v7residenceAddress1 = document.getElementById("residenceAddress1").value;
+    sessionStorage.v7residenceAddress2 = document.getElementById("residenceAddress2").value;
+    sessionStorage.v7residenceCity = document.getElementById("residenceCity").value;
+    sessionStorage.v7residenceState = document.getElementById("residenceState").value;
+    sessionStorage.v7residenceZipCode = document.getElementById("residenceZipCode").value;
+
+    // CHECK ON MAILING ADDRESS = RESIDENCE ADDRESS BOX STATUS
+    if($("#mailingSameAsResidence").is(':checked')) {
+
+      console.log("mailing same as residence box is checked");
+
+      // WRITE MAILING ADDRESS INPUT TO SESSION STORAGE
+      sessionStorage.v7mailingAddress1 = sessionStorage.v7residenceAddress1;
+      sessionStorage.v7mailingAddress2 = sessionStorage.v7residenceAddress2;
+      sessionStorage.v7mailingCity = sessionStorage.v7residenceCity;
+      sessionStorage.v7mailingState = sessionStorage.v7residenceState;
+      sessionStorage.v7mailingZipCode = sessionStorage.v7residenceZipCode;
+
+      } else {
+
+      console.log("mailing same as residence box is NOT checked");
+
+      // WRITE MAILING ADDRESS INPUT TO SESSION STORAGE
+      sessionStorage.v7mailingAddress1 = document.getElementById("mailingAddress1").value;
+      sessionStorage.v7mailingAddress2 = document.getElementById("mailingAddress2").value;
+      sessionStorage.v7mailingCity = document.getElementById("mailingCity").value;
+      sessionStorage.v7mailingState = document.getElementById("mailingState").value;
+      sessionStorage.v7mailingZipCode = document.getElementById("mailingZipCode").value;
+
+    }
+
+    // WRITE USER ADDRESS INPUT TO MYSQL
+    add_address();
+
+    });
+
+
+
 
   $('#mailingSameAsResidence').click(function(){
     if (this.checked) {
@@ -100,7 +140,7 @@ $( document ).ready(function() {
 
 
 
-// FUNCTIONS
+// DBASE FUNCTIONS
 
 function create_account() {
     "use strict";
@@ -241,6 +281,41 @@ function add_info(){
         console.log("Error: " + data.result);
       } else {
         console.log("Volunteer Name and Phone Info written to db.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
+}
+
+
+function add_address(){
+  // WRITE NAME DATA TO MYSQL
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/add_address.php",
+  vars =  "volID=" + sessionStorage.v7userID +
+          "&address1=" + sessionStorage.v7residenceAddress1 +
+          "&address2=" + sessionStorage.v7residenceAddress2 +
+          "&city=" + sessionStorage.v7residenceCity +
+          "&state=" + sessionStorage.v7residenceState +
+          "&zipCode=" + sessionStorage.v7residenceZipCode +
+          "&addressM1=" + sessionStorage.v7mailingAddress1 +
+          "&addressM2=" + sessionStorage.v7mailingAddress2 +
+          "&cityM=" + sessionStorage.v7mailingCity +
+          "&stateM=" + sessionStorage.v7mailingState +
+          "&zipCodeM=" + sessionStorage.v7mailingZipCode;
+
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer Address Info written to db.");
       }
     }
   };
