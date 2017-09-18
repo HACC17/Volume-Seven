@@ -104,101 +104,246 @@
       <div id="personal-info" class="card hideForm animated fadeIn">
         <h5 class="card-header">Name and Contact Information</h5>
         <div class="card-body">
-
-            <div class="form-group row">
-              <label for="example-text-input" class="col-3 col-form-label">First Name</label>
-              <div class="col-9">
-                <input class="form-control" type="text" placeholder="First Name" id="firstName">
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                    <input class="form-control" type="text" placeholder="First Name" id="firstName">
+                </div>
               </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="middleInitial" class="col-3 col-form-label">Middle</label>
-              <div class="col-9">
-                <input class="form-control" type="text" placeholder="Middle Name or Initial" id="middleName">
+              <div class="col-sm-12 col-md-2">
+                <div class="form-group">
+                  <label for="middleInitial">Middle Name of Initial</label>
+                    <input class="form-control" type="text" placeholder="Middle Name or Initial" id="middleName">
+                </div>
               </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="lastName" class="col-3 col-form-label">Last Name</label>
-              <div class="col-9">
-                <input class="form-control" type="text" placeholder="Last Name" id="lastName">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="aKA" class="col-3 col-form-label">AKA</label>
-              <div class="col-9">
-                <input class="form-control" type="text" placeholder="AKA" id="aKA">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="dateOfBirth" class="col-3 col-form-label">Date of Birth</label>
-              <div class="col-9">
-                <input class="form-control" type="date" placeholder="yyyy-mm-dd" id="dateOfBirth">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="cellPhone" class="col-3 col-form-label">Cell Phone</label>
-              <div class="col-9">
-                <input class="form-control" type="tel" placeholder="(808) 123-4567" id="cellPhone">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="homePhone" class="col-3 col-form-label">Home Phone</label>
-              <div class="col-9">
-                <input class="form-control" type="tel" placeholder="(808) 123-4567" id="homePhone">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="prefContact" class="col-3 col-form-label">Contact</label>
-              <div class="col-9">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="contactPref" id="contactEmail" value="email" checked>
-                    Email
-                  </label>
+              <div class="col-sm-12 col-md-5">
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                    <input class="form-control" type="text" placeholder="Last Name" id="lastName">
                 </div>
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="prefContact" class="col-3 col-form-label">Contact</label>
-              <div class="col-9">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="contactPref" id="contactPhone" value="phone">
-                    Phone
-                  </label>
+            <div class="form-group">
+              <label for="aKa">AKA</label>
+              <input class="form-control" type="text" placeholder="AKA" id="aKa">
+            </div>
+
+              <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label class="control-label" for="dateOfBirth">Date of Birth</label>
+                    <input class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="MM/DD/YYYY" type="text"/>
+                  </div>
+                </div>
+              </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                  <label for="cellPhone">Cell Phone</label>
+                    <input class="form-control" type="tel" placeholder="(808) 123-4567" id="cellPhone">
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                  <label for="homePhone">Home Phone</label>
+                    <input class="form-control" type="tel" placeholder="(808) 123-4567" id="homePhone">
                 </div>
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="bestCallTime" class="col-3 col-form-label">Best Time to Call</label>
-              <div class="col-9">
-                <select class="form-control" id="bestCallTime">
-                  <option><b>AM</b> (Mon-Fri 08:00am - 12:00n )</option>
-                  <option><b>PM</b> (Mon-Fri 01:00pm - 05:00pm)</option>
-                </select>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="prefConMeth">Preferred Contact Method</label>
+                  <select class="form-control" id="prefConMeth">
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div class="form-group row">
-              <label class="col-3 col-form-label"></label>
-              <div class="col-9">
+            <div id="preferred-time-to-call-input" class="row hideForm animated fadeIn">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label" for="preferredTimeToCall">Preferred Time To Call</label>
+                  <input class="form-control" id="preferredTimeToCall" name="preferredTimeToCall" placeholder="00:00 AM/PM" type="text"/>
+                </div>
+              </div>
+            </div>
+            </div>
+
+<!-- OPTIONAL: ADD JS TOGGLE - SHOW IF PHONE IS SELECTED AS CONTACT, HIDE IF NOT
+            <div class="form-group row" id="bestTime">
+              <div class="btn-group" data-toggle="buttons">
+                <p>Best time<br />to call</>
+                <label class="btn btn-primary active">
+                  <input type="radio" name="bestCallTime" id="am" value="AM" autocomplete="off"> AM
+                </label>&nbsp;
+                <label class="btn btn-primary">
+                  <input type="radio" name="bestCallTime" id="pm" value="PM" autocomplete="off"> PM
+                </label>
+              </div>
+            </div>
+-->
+
+            <div class="form-group row" id="next-btn-personal-info">
+              <label></label>
                 <div class="text-right">
                   <button id="personal-info-next" class="btn btn-primary">Next</button>
                 </div>
-              </div>
             </div>
-        </div>
+        </div><!-- END OF CARD -->
       </div>
     </form>
+
+
+
+
+<form name="volunteer-address-info" onSubmit="return false;">
+    <div id="address-info" class="card hideForm animated fadeIn">
+      <div class="card-header">Address Info</div>
+      <div class="card-body">
+        <h6><strong>Residence Address</strong></h6>
+        <hr>
+        <div class="form-group">
+          <label for="residenceAddress1">Address 1</label>
+          <input id="residenceAddress1" type="text" class="form-control" placeholder="Address 1">
+        </div>
+        <div class="form-group">
+          <label for="residenceAddress2">Address 2</label>
+          <input id="residenceAddress2" type="text" class="form-control" placeholder="Address 2">
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-8">
+            <div class="form-group">
+              <label for="residenceCity">City</label>
+              <input id="residenceCity" type="text" class="form-control" placeholder="City">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <div class="form-group">
+              <label for="residenceState">State</label>
+              <input id="residenceState" type="text" class="form-control" placeholder="State">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <div class="form-group">
+              <label for="residenceZipCode">ZIP Code</label>
+              <input id="residenceZipCode" type="text" class="form-control" placeholder="ZIP Code">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+                <input id="mailingSameAsResidence" class="form-check-input" type="checkbox"> Your residence and mailing address are the same.
+              </label>
+          </div>
+        </div>
+
+        <div id="mailingAddressFields" class="hideForm animated fadeIn">
+          <h6><strong>Mailing Address</strong></h6>
+          <hr>
+          <div class="form-group">
+            <label for="mailingAddress1">Address 1</label>
+            <input id="mailingAddress1" type="text" class="form-control" placeholder="Address 1">
+          </div>
+          <div class="form-group">
+            <label for="mailingAddress2">Address 2</label>
+            <input id="mailingAddress2" type="text" class="form-control" placeholder="Address 2">
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-8">
+              <div class="form-group">
+                <label for="mailingCity">City</label>
+                <input id="mailingCity" type="text" class="form-control" placeholder="City">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <div class="form-group">
+                <label for="mailingState">State</label>
+                <input id="mailingState" type="text" class="form-control" placeholder="State">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <div class="form-group">
+                <label for="mailingZipCode">ZIP Code</label>
+                <input id="mailingZipCode" type="text" class="form-control" placeholder="ZIP Code">
+              </div>
+            </div>
+          </div>
+        </div><!-- end mailingAddressFields -->
+
+
+        <div class="text-right">
+          <button id="address-info-next" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+</form>
+
+<form name="volunteer-other-info" onSubmit="return false;">
+<div id="other-info" class="card hideForm animated fadeIn">
+  <div class="card-header">Other Info</div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="secondLanguage">Second language</label>
+      <input id="secondLanguage" type="text" class="form-control" placeholder="Second language">
+    </div>
+    <div class="form-group">
+      <label for="politicalPartyAffiliation">Political Party Affiliation</label>
+      <input id="politicalPartyAffiliation" type="text" class="form-control" placeholder="Political Party Affiliation">
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+           <input id="isStateEmployee" class="form-check-input" type="checkbox"> Are you a state employee?
+         </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+           <input id="workedInElection" class="form-check-input" type="checkbox"> Have you worked in the election before?
+         </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-sm-6">
+        <div class="form-group">
+          <label for="lastElectionWorked">Last election worked?</label>
+          <input id="lastElectionWorked" type="text" class="form-control" placeholder="Last election worked?">
+        </div>
+      </div>
+      <div class="col-sm-12 col-sm-6">
+        <div class="form-group">
+          <label for="lastElectionPosition">What position were you?</label>
+          <input id="lastElectionPosition" type="text" class="form-control" placeholder="What position were you?">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+            <input id="donateStipiend" class="form-check-input" type="checkbox"> Do you want to donate your stipend?
+          </label>
+      </div>
+    </div>
+    <div id="npoInputFields" class="form-group hideForm">
+      <label for="NPO">NPO</label>
+      <input id="NPO" type="text" class="form-control" placeholder="NPO">
+    </div>
+    <div class="text-right">
+      <button id="submitForm" type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>
+</form>
+
 
 
       <footer class="container-fluid text-center">
@@ -216,8 +361,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-  <!-- Optional JavaScript -->
+  <!-- Custom JavaScript -->
   <script src=js/index.js></script>
+
+  <!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
   </body>
 </html>

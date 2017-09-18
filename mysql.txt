@@ -1,0 +1,54 @@
+mysql.txt
+
+////////////// TABLES ///////////////////
+
+CREATE TABLE volunteers (
+userID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+userEmail VARCHAR(48) NOT NULL,
+userPW VARCHAR(32) NOT NULL,
+userStatus INT(1) NULL,
+userHash VARCHAR(32),
+userCreated TIMESTAMP
+)
+
+CREATE TABLE volname (
+id INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+volID INT(7) UNSIGNED,
+firstName VARCHAR(48) NOT NULL,
+middleName VARCHAR(48),
+lastName VARCHAR(48) NOT NULL,
+aKa VARCHAR(48)
+)
+
+CREATE TABLE volinfo (
+id INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+volID INT(7) UNSIGNED,
+dob DATE,
+cellPhone VARCHAR(12),
+homePhone VARCHAR(12),
+contactPref VARCHAR(5),
+bestCallTime VARCHAR(2)
+)
+
+CREATE TABLE address (
+id INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+volID INT(7) UNSIGNED,
+addrType VARCHAR(1),
+address1 VARCHAR(48),
+address2 VARCHAR(48),
+city VARCHAR(36),
+state VARCHAR(2),
+zipCode VARCHAR(10)
+)
+
+
+
+
+
+
+/////////////// MISC TEST QUERIES ////////////////////////
+
+INSERT INTO volname (volID, firstName, middleName, lastName, aKa)
+VALUES ('203', 'Markus', '', 'Testa', 't-bro');
+INSERT INTO volinfo (volID, dob, cellPhone, homePhone, contactPref)
+VALUES ('203', '11/13/1957', '415-568-0479', '', 'email')

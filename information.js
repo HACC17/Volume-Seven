@@ -1,5 +1,6 @@
 
 $( document ).ready(function() {
+  $('#dateOfBirth').datepicker();
   let currentForm = 'personal-info';
 
   $('#personal-info-next').click((e) => {
@@ -16,6 +17,20 @@ $( document ).ready(function() {
     currentForm = 'other-info';
   });
 
+  $('#mailingSameAsResidence').click(function(){
+    if (this.checked) {
+      $('#mailingAddressFields').addClass('hideForm');
+    } else if (!this.checked) {
+      $('#mailingAddressFields').removeClass('hideForm');
+    }
+  });
+
+  $('#prefConMeth').change(function() {
+    if (this.value === 'email') {
+      $('#preferred-time-to-call-input').addClass('hideForm');
+    } else if (this.value === 'phone') {
+      $('#preferred-time-to-call-input').removeClass('hideForm');
+    }
 
   // initiate invisivle map
   var map = L.map('queryPrecinctMap');

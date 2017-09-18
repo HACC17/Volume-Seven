@@ -1,5 +1,5 @@
 /*!
- * index.js JavaSctipt v0.1.0
+ * index.js JavaSctipt v0.1.3
  *
  *
  * VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -36,10 +36,21 @@ sessionStorage.clear();
 // DECLARE VARS
 var currentForm;
 
-
-// REGISTRATION FORM INDEX.HTML TRANSITIONS
-
+// DOCUMENT READY FUNCTIONS AND TRANSITIONS
 $( document ).ready(function() {
+
+  // INITIALIZE DATEPICKER
+  var date_input=$('input[name="dateOfBirth"]'); //our date input has the name "date"
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+    format: 'mm/dd/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+  };
+  date_input.datepicker(options);
+
+  // SET SCREEN ON LOAD
   currentForm = 'account_setup';
 
   $('#personal-info-next').click((e) => {
@@ -47,6 +58,27 @@ $( document ).ready(function() {
     $('#personal-info').addClass('hideForm');
     $('#address-info').removeClass('hideForm');
     currentForm = 'address-info';
+
+    // SET CHECKBOX MAILING = RESIDENCE ADDRESS TO CHECKED
+    $('#mailingSameAsResidence').prop('checked', true);
+
+    // WRITE USER INPUT TO SESSION STORAGE
+    sessionStorage.v7firstName = document.getElementById("firstName").value;
+    sessionStorage.v7middleName = document.getElementById("middleName").value;
+    sessionStorage.v7lastName = document.getElementById("lastName").value;
+    sessionStorage.v7aKa = document.getElementById("aKa").value;
+
+    sessionStorage.v7dateOfBirth = document.getElementById("dateOfBirth").value;
+    sessionStorage.v7cellPhone = document.getElementById("cellPhone").value;
+    sessionStorage.v7homePhone = document.getElementById("homePhone").value;
+    sessionStorage.v7prefConMeth = $('#prefConMeth input:radio:checked').val();
+
+    console.log("date of birth: " + sessionStorage.v7dateOfBirth);
+    console.log("preferred method of contact: " + sessionStorage.v7prefConMeth);
+
+    // WRITE USER INPUT TO MYSQL
+    add_info();
+
   });
 
   $('#address-info-next').click((e) => {
@@ -54,16 +86,73 @@ $( document ).ready(function() {
     $('#address-info').addClass('hideForm');
     $('#other-info').removeClass('hideForm');
     currentForm = 'other-info';
+
+    // WRITE RESIDENCE ADDRESS INPUT TO SESSION STORAGE
+    sessionStorage.v7residenceAddress1 = document.getElementById("residenceAddress1").value;
+    sessionStorage.v7residenceAddress2 = document.getElementById("residenceAddress2").value;
+    sessionStorage.v7residenceCity = document.getElementById("residenceCity").value;
+    sessionStorage.v7residenceState = document.getElementById("residenceState").value;
+    sessionStorage.v7residenceZipCode = document.getElementById("residenceZipCode").value;
+
+    // CHECK ON MAILING ADDRESS = RESIDENCE ADDRESS BOX STATUS
+    if($("#mailingSameAsResidence").is(':checked')) {
+
+      console.log("mailing same as residence box is checked");
+
+      // WRITE MAILING ADDRESS INPUT TO SESSION STORAGE
+      sessionStorage.v7mailingAddress1 = sessionStorage.v7residenceAddress1;
+      sessionStorage.v7mailingAddress2 = sessionStorage.v7residenceAddress2;
+      sessionStorage.v7mailingCity = sessionStorage.v7residenceCity;
+      sessionStorage.v7mailingState = sessionStorage.v7residenceState;
+      sessionStorage.v7mailingZipCode = sessionStorage.v7residenceZipCode;
+
+      } else {
+
+      console.log("mailing same as residence box is NOT checked");
+
+      // WRITE MAILING ADDRESS INPUT TO SESSION STORAGE
+      sessionStorage.v7mailingAddress1 = document.getElementById("mailingAddress1").value;
+      sessionStorage.v7mailingAddress2 = document.getElementById("mailingAddress2").value;
+      sessionStorage.v7mailingCity = document.getElementById("mailingCity").value;
+      sessionStorage.v7mailingState = document.getElementById("mailingState").value;
+      sessionStorage.v7mailingZipCode = document.getElementById("mailingZipCode").value;
+
+    }
+
+    // WRITE USER ADDRESS INPUT TO MYSQL
+    add_address();
+
+    });
+
+
+
+
+  $('#mailingSameAsResidence').click(function() {
+    if (this.checked) {
+      $('#mailingAddressFields').addClass('hideForm');
+    } else if (!this.checked) {
+      $('#mailingAddressFields').removeClass('hideForm');
+    }
   });
 
+  $('#prefConMeth').change(function() {
+    if (this.value === 'email') {
+      $('#preferred-time-to-call-input').addClass('hideForm');
+    } else if (this.value === 'phone') {
+      $('#preferred-time-to-call-input').removeClass('hideForm');
+    }
+  });
 });
 
+$('#donateStipiend').click(function() {
+  if (this.checked) {
+    $('#npoInputFields').addClass('hideForm');
+  } else if (!this.checked) {
+    $('#npoInputFields').removeClass('hideForm');
+  }
+});
 
-
-
-
-
-// FUNCTIONS
+// DBASE FUNCTIONS
 
 function create_account() {
     "use strict";
@@ -96,15 +185,11 @@ function create_account() {
 
 
     //PROCESS ACCOUNT CREATION
-    //$.mobile.loading( "show" );
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function (){
         if (hr.readyState === 4 && hr.status === 200){
-            //$.mobile.loading( "hide" );
-
             var data = JSON.parse(hr.responseText);
-
             if(data.result == "OK") {
 
               // WRITE USER DATA TO sessionStorage
@@ -122,7 +207,6 @@ function create_account() {
               $('#account_setup').addClass('hideForm');
               $('#confirm-email').removeClass('hideForm');
               currentForm = 'confirm-email';
-              console.log('completed shows and hides');
 
               } else {
               console.log("query error: " + data.result);
@@ -143,10 +227,110 @@ function confirm_account(){
   "use strict";
   var userCCinput = document.getElementById("userCC").value;
   if(userCCinput == sessionStorage.v7userCC){
+
+    // USER EMAIL CONFIRMED
     $('#confirm-email').addClass('hideForm');
     $('#personal-info').removeClass('hideForm');
     currentForm = 'personal-info';
+
+    // UPDATE DBASE RECORD
+    activate_account();
+
   } else {
     alert("Oops! The code you entered is incorrect. Please check carefully and try again.")
   }
+}
+
+
+
+function activate_account(){
+  // ACTIVATE ACCOUNT
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/activate_acct.php",
+  vars =  "volID=" + sessionStorage.v7userID;
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer account activated.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
+}
+
+
+
+function add_info(){
+  // WRITE NAME DATA TO MYSQL
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/add_info.php",
+  vars =  "volID=" + sessionStorage.v7userID +
+          "&firstName=" + sessionStorage.v7firstName +
+          "&middleName=" + sessionStorage.v7middleName +
+          "&lastName=" + sessionStorage.v7lastName +
+          "&aKa=" + sessionStorage.v7aKa +
+          "&dateOfBirth=" + sessionStorage.v7dateOfBirth +
+          "&cellPhone=" + sessionStorage.v7cellPhone +
+          "&homePhone=" + sessionStorage.v7homePhone +
+          "&prefConMeth=" + sessionStorage.v7prefConMeth;
+
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer Name and Phone Info written to db.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
+}
+
+
+function add_address(){
+  // WRITE NAME DATA TO MYSQL
+  "use strict";
+  var hr = new XMLHttpRequest(),
+  url = "lib/add_address.php",
+  vars =  "volID=" + sessionStorage.v7userID +
+          "&address1=" + sessionStorage.v7residenceAddress1 +
+          "&address2=" + sessionStorage.v7residenceAddress2 +
+          "&city=" + sessionStorage.v7residenceCity +
+          "&state=" + sessionStorage.v7residenceState +
+          "&zipCode=" + sessionStorage.v7residenceZipCode +
+          "&addressM1=" + sessionStorage.v7mailingAddress1 +
+          "&addressM2=" + sessionStorage.v7mailingAddress2 +
+          "&cityM=" + sessionStorage.v7mailingCity +
+          "&stateM=" + sessionStorage.v7mailingState +
+          "&zipCodeM=" + sessionStorage.v7mailingZipCode;
+
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer Address Info written to db.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
 }
