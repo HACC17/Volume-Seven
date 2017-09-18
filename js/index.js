@@ -142,11 +142,15 @@ $( document ).ready(function() {
       $('#preferred-time-to-call-input').removeClass('hideForm');
     }
   });
-
 });
 
-
-
+$('#donateStipiend').click(function() {
+  if (this.checked) {
+    $('#npoInputFields').addClass('hideForm');
+  } else if (!this.checked) {
+    $('#npoInputFields').removeClass('hideForm');
+  }
+});
 
 // DBASE FUNCTIONS
 
