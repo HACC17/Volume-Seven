@@ -3,6 +3,9 @@ $(document).ready(function() {
   // initiate map and set view above the oahu at zoom of 5
   var map = L.map('pollsMap').setView([21.438912, -158.000057], 10);
 
+
+
+
     // set base map layer to streets
     L.esri.basemapLayer('Streets').addTo(map);
     // get feature layer from honolulu gis map of poll stations
@@ -11,13 +14,20 @@ $(document).ready(function() {
       url:'http://webserverholis.honolulugis.org/arcgis/rest/services/Public/Administrative_Political/MapServer/8'
     }).addTo(map);
 
-        //console.log("this is polls", polls);
+
+        console.log("this is polls", polls);
+
+        var whereTo = "PRECINCTID = '40-02'";
+        // This is an option to zoom at the lowest level at the marker that matched the precinct id
+        polls.query().where(whereTo).bounds(function(error, latLngBounds, response){
+          map.fitBounds(latLngBounds).setZoom(17);
+        });
 
     // user location variable currently set to string but should be changed to city of users location from the database
     var userLocation = 'Waianae';
 
     // wait for feature layer to load then run geocode to fit boundaries to user
-
+    /*
     polls.once("load", function(evt) {
 
       L.esri.Geocoding.geocode().text(userLocation).run(function(err, response){
@@ -27,7 +37,7 @@ $(document).ready(function() {
 
 
     });
-
+    */
 
     // variables to generate directions parameters from feature layer property fields
     var address;
@@ -40,7 +50,7 @@ $(document).ready(function() {
       //console.log('layer', layer.feature.properties);
       // inner html of properties available and other functionality
       return L.Util.template(
-        '<h3>{NAME}</h3><p><b>{ADDRESS}</b><br>District:{DISTRICT}<br> Precinct:{PRECINCT}</p><br><button class="trigger btn btn-primary">Directions</button>',
+        '<h4>{NAME} <small>({PRECINCTID})</small></h4><p><b>{ADDRESS}</b><br><hr><button class="trigger btn btn-primary">Directions</button>',
       layer.feature.properties);
     });
 
