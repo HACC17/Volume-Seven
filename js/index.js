@@ -40,6 +40,19 @@ var currentForm;
 // REGISTRATION FORM INDEX.HTML TRANSITIONS
 
 $( document ).ready(function() {
+
+  // INITIALIZE DATEPICKER
+  var date_input=$('input[name="dateOfBirth"]'); //our date input has the name "date"
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+    format: 'mm/dd/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+  };
+  date_input.datepicker(options);
+
+  // SET SCREEN ON LOAD
   currentForm = 'account_setup';
 
   $('#personal-info-next').click((e) => {
@@ -53,6 +66,14 @@ $( document ).ready(function() {
     sessionStorage.v7middleName = document.getElementById("middleName").value;
     sessionStorage.v7lastName = document.getElementById("lastName").value;
     sessionStorage.v7aKa = document.getElementById("aKa").value;
+
+    sessionStorage.v7dateOfBirth = document.getElementById("dateOfBirth").value;
+    sessionStorage.v7cellPhone = document.getElementById("cellPhone").value;
+    sessionStorage.v7homePhone = document.getElementById("homePhone").value;
+    sessionStorage.v7prefConMeth = $('#prefConMeth input:radio:checked').val();
+
+    console.log("date of birth: " + sessionStorage.v7dateOfBirth);
+    console.log("preferred method of contact: " + sessionStorage.v7prefConMeth);
 
     // WRITE USER INPUT TO MYSQL
     add_info();
@@ -162,7 +183,7 @@ function confirm_account(){
 
     // UPDATE DBASE RECORD
     activate_account();
-    
+
   } else {
     alert("Oops! The code you entered is incorrect. Please check carefully and try again.")
   }
@@ -204,7 +225,11 @@ function add_info(){
           "&firstName=" + sessionStorage.v7firstName +
           "&middleName=" + sessionStorage.v7middleName +
           "&lastName=" + sessionStorage.v7lastName +
-          "&aKa=" + sessionStorage.v7aKa;
+          "&aKa=" + sessionStorage.v7aKa +
+          "&dateOfBirth=" + sessionStorage.v7dateOfBirth +
+          "&cellPhone=" + sessionStorage.v7cellPhone +
+          "&homePhone=" + sessionStorage.v7homePhone +
+          "&prefConMeth=" + sessionStorage.v7prefConMeth;
 
   hr.open("POST", url, true);
   hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -215,7 +240,7 @@ function add_info(){
         // SOMETHING WENT WRONG
         console.log("Error: " + data.result);
       } else {
-        console.log("Volunteer Name Info written to db.");
+        console.log("Volunteer Name and Phone Info written to db.");
       }
     }
   };
