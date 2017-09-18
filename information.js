@@ -25,4 +25,12 @@ $( document ).ready(function() {
     }
   });
 
+  $('#prefConMeth').change(function() {
+    if (this.value === 'email') {
+      $('#preferred-time-to-call-input').addClass('hideForm');
+    } else if (this.value === 'phone') {
+      $('#preferred-time-to-call-input').removeClass('hideForm');
+    }
+  });
+
 });

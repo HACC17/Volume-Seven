@@ -130,10 +130,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12 col-md-12">
+            <div class="col-sm-12">
               <div class="form-group">
-                <label for="preferredTimeToCall">Preferred Time To Call</label>
-                <input id="preferredTimeToCall" type="text" class="form-control" placeholder="Preferred Time To Call">
+                <label for="prefConMeth">Preferred Contact Method</label>
+                <select class="form-control" id="prefConMeth">
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="preferred-time-to-call-input" class="row hideForm animated fadeIn">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label" for="preferredTimeToCall">Preferred Time To Call</label>
+                <input class="form-control" id="preferredTimeToCall" name="preferredTimeToCall" placeholder="00:00 AM/PM" type="text"/>
               </div>
             </div>
           </div>
@@ -142,6 +154,57 @@
           </div>
         </div>
       </div>
+      <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                  <input class="form-control" type="text" placeholder="First Name" id="firstName">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+              <div class="form-group">
+                <label for="middleInitial">Middle Name of Initial</label>
+                  <input class="form-control" type="text" placeholder="Middle Name or Initial" id="middleName">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-5">
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                  <input class="form-control" type="text" placeholder="Last Name" id="lastName">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="aKa">AKA</label>
+            <input class="form-control" type="text" placeholder="AKA" id="aKa">
+          </div>
+
+            <div class="row">
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label class="control-label" for="dateOfBirth">Date of Birth</label>
+                  <input class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="MM/DD/YYYY" type="text"/>
+                </div>
+              </div>
+            </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group">
+                <label for="cellPhone">Cell Phone</label>
+                  <input class="form-control" type="tel" placeholder="(808) 123-4567" id="cellPhone">
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group">
+                <label for="homePhone">Home Phone</label>
+                  <input class="form-control" type="tel" placeholder="(808) 123-4567" id="homePhone">
+              </div>
+            </div>
+          </div>
+          </div>
       <div id="address-info" class="card hideForm animated fadeIn">
         <div class="card-header">Address Info</div>
         <div class="card-body">

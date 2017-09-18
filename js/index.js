@@ -127,11 +127,19 @@ $( document ).ready(function() {
 
 
 
-  $('#mailingSameAsResidence').click(function(){
+  $('#mailingSameAsResidence').click(function() {
     if (this.checked) {
       $('#mailingAddressFields').addClass('hideForm');
     } else if (!this.checked) {
       $('#mailingAddressFields').removeClass('hideForm');
+    }
+  });
+
+  $('#prefConMeth').change(function() {
+    if (this.value === 'email') {
+      $('#preferred-time-to-call-input').addClass('hideForm');
+    } else if (this.value === 'phone') {
+      $('#preferred-time-to-call-input').removeClass('hideForm');
     }
   });
 
