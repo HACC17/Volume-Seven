@@ -1,7 +1,7 @@
 <?php
 
 /*
- * add_info.php v0.1.0
+ * add_info.php v0.1.1
  *
  *
  * VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -35,10 +35,15 @@
 //            "&middleName=" + sessionStorage.v7middleName +
 //            "&lastName=" + sessionStorage.v7lastName +
 //            "&aKa=" + sessionStorage.v7aKa;
+//						"&dateOfBirth=" + sessionStorage.v7dateOfBirth +
+//						"&cellPhone=" + sessionStorage.v7cellPhone +
+//						"&homePhone=" + sessionStorage.v7homePhone +
+//						"&prefConMeth=" + sessionStorage.v7prefConMeth;
 
 
 // CLEAR VARIABLES
 $volID = $firstName = $middleName = $lastName = $aKa = "";
+$dateOfBirth = $cellPhone = $homePhone = $prefConMeth = "";
 
 // CHECK THAT VARIABLES ARE POSTED (VALIDATE BY JS in production version) OR EXIT
 if ( empty($_POST['volID']) || empty($_POST['lastName']) ) {
@@ -52,12 +57,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $lastName = $_POST['lastName'];
 	$aKa = $_POST['aKa'];
 
+	$dateOfBirth = $_POST['dateOfBirth'];
+	$cellPhone = $_POST['cellPhone'];
+  $homePhone = $_POST['homePhone'];
+	$prefConMeth = $_POST['prefConMeth'];
+
 	// CLEAN POSTVARIABLES
 	$volID = clean_input($volID);
 	$firstName = clean_input($firstName);
 	$middleName = clean_input($middleName);
 	$lastName = clean_input($lastName);
 	$aKa = clean_input($aKa);
+
+	$dateOfBirth = clean_input($dateOfBirth);
+	$cellPhone = clean_input($cellPhone);
+	$homePhone = clean_input($homePhone);
+	$prefConMeth = clean_input($prefConMeth);
+
   } else {
   exit();
 }
@@ -82,12 +98,18 @@ if (mysqli_connect_errno()) {
 }
 
 // SQL Query ADD USER
-$add_info = "INSERT INTO volname (volID, firstName, middleName, lastName, aKa)
-VALUES ('$volID', '$firstName', '$middleName', '$lastName', '$aKa')";
+$add_name_info = "INSERT INTO volname (volID, firstName, middleName, lastName, aKa) VALUES ('$volID', '$firstName', '$middleName', '$lastName', '$aKa') ";
 
 // SEND QUERY AND EVALUATE RESULT
-if ($con->query($add_info) === TRUE) {
+if ($con->query($add_name_info) === TRUE) {
 	$queryresult = "OK";
+
+	$add_phone_info = "INSERT INTO volinfo (volID, dob, cellPhone, homePhone, contactPref) VALUES ('$volID', '$dateOfBirth', '$cellPhone', '$homePhone', '$prefConMeth') ";
+	if ($con->query($add_phone_info) === TRUE) {
+		$queryresult = "OK";
+		} else {
+			$queryresult = mysqli_error($con);
+		}
   } else {
 	$queryresult = mysqli_error($con);
 }

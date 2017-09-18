@@ -125,10 +125,21 @@
                 <input class="form-control" type="text" placeholder="AKA" id="aKa">
             </div>
 
-            <div class="form-group">
-              <label for="dateOfBirth">Date of Birth</label>
-                <input class="form-control" type="date" placeholder="yyyy-mm-dd" id="dateOfBirth">
-            </div>
+
+            <div class="bootstrap-iso">
+             <div class="container-fluid">
+               <p> <br /> </p>
+              <div class="row">
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label class="control-label" for="dateOfBirth">Date of Birth</label>
+                    <input class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="MM/DD/YYYY" type="text"/>
+                  </div>
+                </div>
+              </div>
+             </div>
+           </div><!-- end of bootstrap-iso -->
+
 
             <div class="form-group">
               <label for="cellPhone">Cell Phone</label>
@@ -141,14 +152,14 @@
             </div>
 
             <div class="form-group row">
-              <label for="preferredContact">Preferred Contact Method</></label>
+              <label for="prefConMeth">Preferred Contact Method</></label>
               <br />
-                <div class="btn-group" data-toggle="buttons">
+                <div class="btn-group" id="prefConMeth" data-toggle="buttons">
                 <label class="btn btn-primary active">
-                  <input type="radio" name="prefConMeth" id="contactEmail" value="emailContact" autocomplete="off" checked> Email
+                  <input type="radio" name="contactMeth" value="email" autocomplete="off" checked> Email
                 </label>&nbsp;
                 <label class="btn btn-primary">
-                  <input type="radio" name="prefConMeth" id="contactPhone" value="phoneContact" autocomplete="off"> Phone
+                  <input type="radio" name="contactMeth" value="phone" autocomplete="off"> Phone
                 </label>
                 </div>
             </div>
@@ -176,6 +187,8 @@
         </div><!-- END OF CARD -->
       </div>
     </form>
+
+
 
 
 <form name="volunteer-address-info" onSubmit="return false;">
@@ -328,8 +341,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
   <!-- Custom JavaScript -->
-  <script src="js/loader.js"></script>
   <script src=js/index.js></script>
+
+  <!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 
   </body>
