@@ -42,7 +42,38 @@
       <br>
       <div class="card">
          <div class="card-body">
-            <h5>Registered Volunteers</h5><br>
+           <h5>Registered Volunteers</h5><br>
+           <form id="registeredVolunteerSearch" action="">
+             <div class="row">
+               <div class="col-sm-12 col-md-6">
+                 <div class="form-group">
+                   <label for="searchQuery">Search Query</label>
+                   <input id="searchQuery" type="text" class="form-control" placeholder="Search Query">
+                 </div>
+               </div>
+               <div class="col-sm-12 col-md-6">
+                 <div class="form-group">
+                   <label for="searchConstraint">Constraint</label>
+                   <select class="form-control" id="prefConMeth">
+                     <option value="fullName">Name</option>
+                     <option value="job">Job</option>
+                     <option value="precinctLocation">Precinct Location</option>
+                     <option value="trainingLocation">Training Session</option>
+                   </select>
+                 </div>
+               </div>
+             </div>
+             <div class="row">
+               <div class="col-sm-12">
+                 <div class="form-group">
+                   <button id="submitSearch" type="submit" class="btn btn-primary">Search</button>
+                   <button id="bulkEmail" type="submit" class="btn btn-warning">Send Bulk Email to Search Criteria</button>
+                 </div>
+               </div>
+             </div>
+           </form>
+         </div>
+         <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
