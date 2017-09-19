@@ -34,8 +34,11 @@ console.log("ready function");
 
 listvols();
 
+});
+
+
 function listvols() {
-    //"use strict";
+    "use strict";
     console.log("listvols called");
     var hr = new XMLHttpRequest(),
         url = "lib/list.php",
@@ -47,7 +50,7 @@ function listvols() {
             //$.mobile.loading( "hide" );
             var data = JSON.parse(hr.responseText);
             console.log(data);
-/*
+
             data.map((data) => {
               $(".usertable").append(`
                 <tr class="${data.userID}">
@@ -60,12 +63,9 @@ function listvols() {
                 </tr>
                 `);
             });
-*/
+
          }
     };
 
     hr.send(vars);
 }
-
-
-});
