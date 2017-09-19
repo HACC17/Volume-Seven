@@ -34,7 +34,7 @@
 
 
 // CLEAR VARIABLES
-$userName = "";
+$userID = "";
 
 // CHECK THAT VARIABLES ARE POSTED (VALIDATE BY JS in production version) OR EXIT
 if ( empty($_POST['userID']) ) {
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if($userID == "admin"){
 	$whereClause = "";
 } else {
-	$whereClause = "WHERE userID = " + $userID;
+	$whereClause = "WHERE volunteers.userID = '" + $userID + "' ";
 }
 
 // DBASE CONFIGS
@@ -66,7 +66,7 @@ if (mysqli_connect_errno()) {
 
 // QUERY ALL VOLUNTEER RECORDS
 $query = "SELECT volname.firstName, volname.middleName, volname.lastName, volname.aKa, volunteers.userID, volunteers.userEmail
-FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID" . $whereClause;
+FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID " . $whereClause;
 
 $docs = $con->query($query);
 $row_docs_cnt = $docs->num_rows;

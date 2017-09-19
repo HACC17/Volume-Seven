@@ -1,7 +1,7 @@
 <?php
 
 /*
- * list.php v0.1.0
+ * list_detail.php v0.1.0
  *
  *
  * VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -30,29 +30,24 @@
  * THE SOFTWARE.
  */
 
-// admin.js: vars = "userName=admin";
+// admin-detail.js: vars = "userID=" + getUserID;
 
 
 
-/* CLEAR VARIABLES
-$userName = "";
+// CLEAR VARIABLES
+$userID = "";
 
 // CHECK THAT VARIABLES ARE POSTED (VALIDATE BY JS in production version) OR EXIT
-if ( empty($_POST['userName']) ) {
+if ( empty($_POST['userID']) ) {
 	exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $userName = $_POST['userName'];
+  $userID = $_POST['userID'];
   } else {
   exit();
 }
 
-if($userName != "admin"){
-	exit();
-}
-
-*/
 
 
 // DBASE CONFIGS
@@ -68,7 +63,7 @@ if (mysqli_connect_errno()) {
 
 
 $query = "SELECT volname.firstName, volname.middleName, volname.lastName, volname.aKa, volunteers.userID, volunteers.userEmail
-FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID";
+FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID WHERE volunteers.userID = '$userID' ";
 
 $docs = $con->query($query);
 $row_docs_cnt = $docs->num_rows;

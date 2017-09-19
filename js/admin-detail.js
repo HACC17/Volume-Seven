@@ -28,9 +28,17 @@
  * THE SOFTWARE.
  */
 
+var getUserID;
 
 $(document).ready(function() {
 console.log("admin-detail.js ready function");
+
+
+function goBack() {
+    window.history.back();
+}
+
+
 
 function getQueryVariable(variable)
 {
@@ -43,29 +51,29 @@ function getQueryVariable(variable)
        return(false);
 }
 
-var userID = getQueryVariable('id');
-console.log("userID: " + userID);
+getUserID = getQueryVariable('id');
+console.log("getUserID: " + getUserID);
 
+volrecord();
 
 });
-
-
 
 
 function volrecord() {
     "use strict";
     console.log("volrecord called");
     var hr = new XMLHttpRequest(),
-        url = "lib/list.php",
-        vars = "userID=" + userID;
+        url = "lib/list_detail.php",
+        vars = "userID=" + getUserID;
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function (){
         if (hr.readyState === 4 && hr.status === 200){
             //$.mobile.loading( "hide" );
+            console.log(hr.responseText);
             var data = JSON.parse(hr.responseText);
-            console.log(data);
 
+/*
             data.map((data) => {
               $(".usertable").append(`
                 <tr class="${data.userID}">
@@ -79,9 +87,10 @@ function volrecord() {
                 </tr>
                 `);
             });
-
+*/
          }
     };
 
     hr.send(vars);
+    console.log(vars);
 }
