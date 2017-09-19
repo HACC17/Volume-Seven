@@ -97,21 +97,25 @@ $userCC = substr($userData['userHash'],0,6);
 $userCC = strtoupper($userCC);
 
 
-/* ACCOUNT CONFIRMATION EMAIL WITH ACTIVATION LINK
+// ACCOUNT CONFIRMATION EMAIL WITH ACTIVATION LINK
 $to      = $userEmail;
-$subject = 'Thank you for registering!';
+$subject = 'ELVOS 1.0: Thank you for registering!';
 $message = '
 
 Thank you for registering!
 
-Your account has been created and is ready to be activated. Please confirm your email address and activate your account by clicking on the following link:
+Your election volunteer account has been created and is ready to be activated.
 
-http://toposmedia.com/github/Volume-Seven/home.html#login?reqStatus=emc&userID=' . $email . '&reqID=' . $hashID . '
+Your ACTIVATON CODE IS:
+
+	'.$userCC.'
+
+Please enter the code exactly as listed above (case sensitive) to activate your account and continue with your registration.
+
 
 The login information for your account is:
-
 -------------------------------------------
-Email: '.$email.'
+Email:    '.$email.'
 Password: '.$pw.'
 -------------------------------------------
 
@@ -119,18 +123,17 @@ Thank you!
 
 ';
 
-$headers = 'From:noreply@memories.care' . "\r\n";
+$headers = 'From:noreply@elvos.org' . "\r\n";
 mail($to, $subject, $message, $headers);
 
-*/
 
 
 // ACCOUNT CONFIRMATION EMAIL TO ADMIN
 $toAdmin      = 'hh57@toposmedia.com';
-$subjectAdmin = 'VOLUME 7 New Account Registration';
+$subjectAdmin = 'ELVOS 1.0 New Account Registration';
 $messageAdmin = '
 
-A new VOLUME 7 Account has been registered.
+A new ELVOS 1.0 Account has been registered.
 The login information for the account is:
 
 -------------------------------------------
@@ -139,11 +142,11 @@ userPW:    '.$userPW.'
 userCC:    '.$userCC.'
 -------------------------------------------
 
-This is an automated VOLUME 7 notice.
+This is an automated ELVOS 1.0 notice.
 
 ';
 
-$headers = 'From:noreply@toposmedia.com' . "\r\n";
+$headers = 'From:noreply@elvos.org' . "\r\n";
 mail($toAdmin, $subjectAdmin, $messageAdmin, $headers);
 
 // ADD USER CC TO ARRAY

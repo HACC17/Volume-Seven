@@ -146,9 +146,10 @@ $( document ).ready(function() {
 
 $('#donateStipiend').click(function() {
   if (this.checked) {
-    $('#npoInputFields').addClass('hideForm');
-  } else if (!this.checked) {
     $('#npoInputFields').removeClass('hideForm');
+  } else if (!this.checked) {
+    $('#npoInputFields').addClass('hideForm');
+
   }
 });
 
@@ -156,6 +157,7 @@ $('#donateStipiend').click(function() {
 
 function create_account() {
     "use strict";
+    console.log("create account called")
 
     var hr = new XMLHttpRequest(),
         url = "lib/create_account.php",
@@ -333,4 +335,63 @@ function add_address(){
   };
   hr.send(vars);
   console.log("vars sent: " + vars);
+}
+
+
+
+function other_info(){
+  // WRITE NAME DATA TO MYSQL
+  "use strict";
+
+  // WRITE OTHER INFO INPUT TO SESSION STORAGE
+  sessionStorage.v7secondLanguage = document.getElementById("secondLanguage").value;
+  sessionStorage.v7politicalPartyAffiliation = document.getElementById("politicalPartyAffiliation").value;
+  sessionStorage.v7isStateEmployee = document.getElementById("isStateEmployee").value;
+  sessionStorage.v7workedInElection = document.getElementById("workedInElection").value;
+  sessionStorage.v7lastElectionWorked = document.getElementById("lastElectionWorked").value;
+
+  sessionStorage.v7lastElectionPosition = document.getElementById("lastElectionPosition").value;
+  sessionStorage.v7donateStipiend = document.getElementById("donateStipiend").value;
+  sessionStorage.v7NPO = document.getElementById("NPO").value;
+
+  console.log("politicalPartyAffiliation: " + sessionStorage.v7politicalPartyAffiliation);
+  console.log("donateStipiend: " + sessionStorage.v7donateStipiend);
+  console.log("NPO: " + sessionStorage.v7NPO);
+
+
+/*
+  var hr = new XMLHttpRequest(),
+  url = "lib/add_other_info.php",
+  vars =  "volID=" + sessionStorage.v7userID +
+          "&address1=" + sessionStorage.v7residenceAddress1 +
+          "&address2=" + sessionStorage.v7residenceAddress2 +
+          "&city=" + sessionStorage.v7residenceCity +
+          "&state=" + sessionStorage.v7residenceState +
+          "&zipCode=" + sessionStorage.v7residenceZipCode +
+          "&addressM1=" + sessionStorage.v7mailingAddress1 +
+          "&addressM2=" + sessionStorage.v7mailingAddress2 +
+          "&cityM=" + sessionStorage.v7mailingCity +
+          "&stateM=" + sessionStorage.v7mailingState +
+          "&zipCodeM=" + sessionStorage.v7mailingZipCode;
+
+  hr.open("POST", url, true);
+  hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  hr.onreadystatechange = function (){
+    if (hr.readyState === 4 && hr.status === 200){
+      var data = JSON.parse(hr.responseText);
+      if(data.result != "OK") {
+        // SOMETHING WENT WRONG
+        console.log("Error: " + data.result);
+      } else {
+        console.log("Volunteer Other Info written to db.");
+      }
+    }
+  };
+  hr.send(vars);
+  console.log("vars sent: " + vars);
+*/
+
+// REDIRECT TO TRAINING SIGNUP
+window.location.assign("trainingsignup.html");
+
 }
