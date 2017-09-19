@@ -30,25 +30,27 @@
  * THE SOFTWARE.
  */
 
-// admin.js: vars = "userName=admin";
+// admin.js: vars = "userID=admin";
 
 
 // CLEAR VARIABLES
 $userName = "";
 
 // CHECK THAT VARIABLES ARE POSTED (VALIDATE BY JS in production version) OR EXIT
-if ( empty($_POST['userName']) ) {
+if ( empty($_POST['userID']) ) {
 	exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $userName = $_POST['userName'];
+  $userID = $_POST['userID'];
   } else {
   exit();
 }
 
-if($userName != "admin"){
-	exit();
+if($userID == "admin"){
+	$whereClause = "";
+} else {
+	$whereClause = "WHERE userID = " + $userID;
 }
 
 // DBASE CONFIGS
@@ -64,7 +66,7 @@ if (mysqli_connect_errno()) {
 
 // QUERY ALL VOLUNTEER RECORDS
 $query = "SELECT volname.firstName, volname.middleName, volname.lastName, volname.aKa, volunteers.userID, volunteers.userEmail
-FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID";
+FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID" . $whereClause;
 
 $docs = $con->query($query);
 $row_docs_cnt = $docs->num_rows;

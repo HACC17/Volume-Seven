@@ -1,5 +1,5 @@
 /*!
- * admin.js JavaSctipt v0.1.0
+ * admin-detail.js JavaSctipt v0.1.0
  *
  *
  * TEAM VOLUME 7 - VOLUNTEER REGISTRATION AND SCHEDULER WEB APP
@@ -30,35 +30,34 @@
 
 
 $(document).ready(function() {
-console.log("ready function");
+console.log("admin-detail.js ready function");
 
-listvols();
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
 
-// ROW AS LINK
-  $('tr').click( function() {
-      window.location = $(this).find('a').attr('href');
-    }).hover( function() {
-      $(this).toggleClass('hover');
-    });
+var userID = getQueryVariable('id');
+console.log("userID: " + userID);
+
 
 });
 
 
-// ROW AS LINK
-$('tr').click( function() {
-    window.location = $(this).find('a').attr('href');
-}).hover( function() {
-    $(this).toggleClass('hover');
-});
 
 
-
-function listvols() {
+function volrecord() {
     "use strict";
-    console.log("listvols called");
+    console.log("volrecord called");
     var hr = new XMLHttpRequest(),
         url = "lib/list.php",
-        vars = "userID=admin";
+        vars = "userID=" + userID;
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function (){

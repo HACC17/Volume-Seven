@@ -45,3 +45,10 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+
+tr.hover {
+   cursor: pointer;
+   /* whatever other hover styles you want */
+}
