@@ -1,6 +1,5 @@
 html, body {
   height: 100%;
-  overflow: hidden;
   width: 100%;
   font-family: Helvetica;
 }
@@ -10,6 +9,10 @@ html, body {
   width: auto
 }
 
+#adminViewPolls {
+  height: 600px;
+  width: auto;
+}
 
 .blue {
    color: #007E9F;
