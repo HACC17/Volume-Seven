@@ -1,4 +1,4 @@
-# Volume-Seven
+# ELVOS HI (ELection VOlunteer Scheduler HI)
 
 Team: Volume Seven
 
