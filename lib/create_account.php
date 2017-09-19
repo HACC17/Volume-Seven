@@ -106,20 +106,18 @@ Thank you for registering!
 
 Your election volunteer account has been created and is ready to be activated.
 
-Your ACTIVATON CODE IS:
+Your ACTIVATON CODE (case sensitive) IS:  '.$userCC.'
 
-	'.$userCC.'
-
-Please enter the code exactly as listed above (case sensitive) to activate your account and continue with your registration.
-
-
-The login information for your account is:
--------------------------------------------
-Email:    '.$email.'
-Password: '.$pw.'
--------------------------------------------
+Please enter the code exactly as listed above to activate your account and continue with your registration.
 
 Thank you!
+
+
+
+
+///// This is an automatic ELVOS 1.0 notice. /////
+
+            DO NOT REPLY to this email.
 
 ';
 

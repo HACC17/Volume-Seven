@@ -392,6 +392,6 @@ function other_info(){
 */
 
 // REDIRECT TO TRAINING SIGNUP
-window.location.assign("trainingsignup.html");
+window.location.assign("job.html");
 
 }

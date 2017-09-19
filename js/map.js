@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // initiate map and set view above the oahu at zoom of 5
-  var map = L.map('pollsMap').setView([21.438912, -158.000057], 10);
+  var map = L.map('pollsMap').setView([21.438912, -158.000057], 5);
 
 
 
