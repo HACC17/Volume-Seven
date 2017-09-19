@@ -73,23 +73,12 @@ function volrecord() {
             console.log(hr.responseText);
             var data = JSON.parse(hr.responseText);
 
-/*
-            data.map((data) => {
-              $(".usertable").append(`
-                <tr class="${data.userID}">
-                  <th scope="row"><a href="admin_detail.html?id=${data.userID}">${data.userID}</a></th>
-                  <td>${data.firstName}</td>
-                  <td>${data.lastName}</td>
-                  <td>${data.userEmail}</td>
-                  <td></td>
-
-                  <td>Precinct Official</td>
-                </tr>
-                `);
-            });
-*/
+            $('#userID').text(data[0].userID);
+            $('#volunteerName').text(data[0].firstName + ' ' + data[0].lastName);
+            $('#volunteerEmail').text(data[0].userEmail);
          }
     };
+
 
     hr.send(vars);
     console.log(vars);
