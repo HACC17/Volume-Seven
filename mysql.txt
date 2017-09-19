@@ -52,3 +52,30 @@ INSERT INTO volname (volID, firstName, middleName, lastName, aKa)
 VALUES ('203', 'Markus', '', 'Testa', 't-bro');
 INSERT INTO volinfo (volID, dob, cellPhone, homePhone, contactPref)
 VALUES ('203', '11/13/1957', '415-568-0479', '', 'email')
+
+
+
+SELECT * FROM volunteers WHERE
+
+
+
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2 ON table1.column_name = table2.column_name;
+
+
+SELECT *
+FROM volname
+INNER JOIN volunteers ON volname.volID = volunteers.userID
+
+
+
+SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+FROM ((Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+
+
+SELECT volname.firstName, volname.middleName, volname.lastName, volname.aKa, volunteers.userID, volunteers.userEmail
+FROM volname
+INNER JOIN volunteers ON volname.volID = volunteers.userID

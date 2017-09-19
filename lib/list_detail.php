@@ -33,7 +33,8 @@
 // admin.js: vars = "userName=admin";
 
 
-// CLEAR VARIABLES
+
+/* CLEAR VARIABLES
 $userName = "";
 
 // CHECK THAT VARIABLES ARE POSTED (VALIDATE BY JS in production version) OR EXIT
@@ -51,6 +52,9 @@ if($userName != "admin"){
 	exit();
 }
 
+*/
+
+
 // DBASE CONFIGS
 require_once '../../../../config.php';
 
@@ -62,7 +66,7 @@ if (mysqli_connect_errno()) {
 	$queryresult = "ERROR CONN FAIL";
 }
 
-// QUERY ALL VOLUNTEER RECORDS
+
 $query = "SELECT volname.firstName, volname.middleName, volname.lastName, volname.aKa, volunteers.userID, volunteers.userEmail
 FROM volname INNER JOIN volunteers ON volname.volID = volunteers.userID";
 

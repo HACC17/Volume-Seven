@@ -31,13 +31,14 @@
 
 $(document).ready(function() {
 console.log("ready function");
-  listvols();
+
+listvols();
 
 });
 
 
-function listvols(){
-    //"use strict";
+function listvols() {
+    "use strict";
     console.log("listvols called");
     var hr = new XMLHttpRequest(),
         url = "lib/list.php",
@@ -48,7 +49,8 @@ function listvols(){
         if (hr.readyState === 4 && hr.status === 200){
             //$.mobile.loading( "hide" );
             var data = JSON.parse(hr.responseText);
-/*
+            console.log(data);
+
             data.map((data) => {
               $(".usertable").append(`
                 <tr class="${data.userID}">
@@ -61,7 +63,7 @@ function listvols(){
                 </tr>
                 `);
             });
-*/
+
          }
     };
 
