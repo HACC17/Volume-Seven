@@ -6,7 +6,7 @@
  * Developed by team VOLUME 7 as a demo for HACC17
  *
  * Copyright 2017 Spencer Young, Holger H-Ray Heine
- * contact: spencerpjy@gmail.com, hh57@toposmedia.com
+ * contact: hh57@toposmedia.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
